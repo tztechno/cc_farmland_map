@@ -71,14 +71,14 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex' }}>
-            <div style={{ width: '85%' }}>
+            <div style={{ width: '86%' }}>
                 <h1>Farmland Map</h1>
                 <MapComponent
                     onProgressUpdate={handleProgressUpdate}
                     progressData={progressData}
                 />
             </div>
-            <div style={{ width: '15%', padding: '10px' }}>
+            <div style={{ width: '14%', padding: '4px' }}>
                 <h2>Status</h2>
 
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
