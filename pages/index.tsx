@@ -72,7 +72,7 @@ const IndexPage: React.FC = () => {
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ width: '85%' }}>
-                <h1>Polygon Map</h1>
+                <h1>Farmland Map</h1>
                 <MapComponent
                     onProgressUpdate={handleProgressUpdate}
                     progressData={progressData}
