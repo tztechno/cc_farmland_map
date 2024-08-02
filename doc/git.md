@@ -18,7 +18,7 @@ git remote add origin https://github.com/tztechno/coco_fukaya.git
 git branch -M main
 git push -u origin main
 git add .
-git commit -m “2024-08-01”
+git commit -m “2024-08-02”
 git push -u origin main
 
 git push -f origin main
