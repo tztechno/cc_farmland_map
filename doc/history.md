@@ -1,6 +1,13 @@
 ```
 
-npm audit fix
+2024-08-03 02:00
+index.tsxのreturnで規定されている地図の右側15%の領域に、
+現在、map.tsxで規定されている２つのボタン
+<button onClick={showCurrentLocation}>Show Current Location</button>
+<button onClick={startCreatingPolygon}>Create Polygon</button>
+を直接設置したいが可能か。
+現状のindex.tsxは-------------
+現状のmap.tsxは------------
 
 2024-08-02 19:30
 popup修正を確認しました
