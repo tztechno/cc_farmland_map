@@ -269,7 +269,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                         fillOpacity={0.8}
                         stroke={false}
                     >
-                        <Tooltip permanent>Here</Tooltip>
+                        <Tooltip permanent>Your location</Tooltip>
                     </CircleMarker>
                 )}
                 {isCreatingPolygon && polygonPoints.length > 0 && (

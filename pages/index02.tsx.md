@@ -80,7 +80,18 @@ const IndexPage: React.FC = () => {
             </div>
             <div style={{ width: '15%', padding: '10px' }}>
                 <h2>Status</h2>
-
+                <ul style={{ listStyleType: 'none', padding: 0 }}>
+                    {Object.entries(progressData).map(([region, progress]) => (
+                        <li key={region} style={{ marginBottom: '5px' }}>
+                            <span style={{
+                                color: colorMapping[progress as keyof typeof colorMapping],
+                                fontWeight: 'bold'
+                            }}>
+                                {region}: {progressMapping[progress as keyof typeof progressMapping]}
+                            </span>
+                        </li>
+                    ))}
+                </ul>
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
                 <button onClick={handleSaveCSV}>Save Progress</button>
 
@@ -109,20 +120,6 @@ const IndexPage: React.FC = () => {
                         </select>
                     )}
                 </div>
-
-                <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    {Object.entries(progressData).map(([region, progress]) => (
-                        <li key={region} style={{ marginBottom: '5px' }}>
-                            <span style={{
-                                color: colorMapping[progress as keyof typeof colorMapping],
-                                fontWeight: 'bold'
-                            }}>
-                                {region}: {progressMapping[progress as keyof typeof progressMapping]}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
-
             </div>
         </div>
     );
