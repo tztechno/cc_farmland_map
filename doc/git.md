@@ -1,33 +1,32 @@
 ```
-cd vercel_polygon_map
-https://github.com/tztechno/coco_fukaya.git
+cd farmland
+https://github.com/tztechno/coco_farmland_map.git
 
 
 package.jsonを修正
 npm install
 npm run dev
 
-https://github.com/tztechno/coco_fukaya.git
-cd vercel_polygon_map
+https://github.com/tztechno/coco_farmland_map.git
+cd farmland
 git pull
 
 
 cd polygon
 git init
-git remote add origin https://github.com/tztechno/coco_fukaya.git
-git branch -M main
+git remote add origin https://github.com/tztechno/coco_farmland_map.git
 git push -u origin main
-cd polygon
+
 git add .
-git commit -m “2024-08-02”
+git commit -m “2024-08-03”
 git push -u origin main
 
 git push -f origin main
 
-cd polygon
+cd farmland
 npm run build
 
-cd polygon
+cd farmland
 npm run dev
 
 http://localhost:3000
