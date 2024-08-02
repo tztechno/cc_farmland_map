@@ -71,14 +71,14 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex' }}>
-            <div style={{ width: '90%' }}>
+            <div style={{ width: '85%' }}>
                 <h1>Polygon Map</h1>
                 <MapComponent
                     onProgressUpdate={handleProgressUpdate}
                     progressData={progressData}
                 />
             </div>
-            <div style={{ width: '10%', padding: '20px' }}>
+            <div style={{ width: '15%', padding: '20px' }}>
                 <h2>Progress Data</h2>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     {Object.entries(progressData).map(([region, progress]) => (
@@ -93,7 +93,7 @@ const IndexPage: React.FC = () => {
                     ))}
                 </ul>
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
-                <button onClick={handleSaveCSV}>Save Progress to CSV</button>
+                <button onClick={handleSaveCSV}>Save Progress</button>
 
                 <div style={{ marginTop: '20px' }}>
                     <select onChange={handleRegionSelect} value={selectedRegion}>

@@ -282,7 +282,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                 display: 'flex', flexDirection: 'column', gap: '10px',
                 backgroundColor: 'white', padding: '10px', borderRadius: '5px'
             }}>
-                <button onClick={showCurrentLocation}>Show Current Location</button>
+                <button onClick={showCurrentLocation}>Current Location</button>
                 <button onClick={startCreatingPolygon}>Create Polygon</button>
                 {isCreatingPolygon && (
                     <button onClick={savePolygon}>Save Polygon</button>
