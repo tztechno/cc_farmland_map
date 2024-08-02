@@ -277,11 +277,13 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                 )}
                 {geoJSONData && <MapContent geoJSONData={geoJSONData} />}
             </MapContainer>
+
             <div style={{
                 position: 'fixed', top: '10px', right: '10px', zIndex: 1000,
                 display: 'flex', flexDirection: 'column', gap: '10px',
                 backgroundColor: 'white', padding: '10px', borderRadius: '5px'
             }}>
+                <button>Select Region</button>
                 <button onClick={showCurrentLocation}>Show Current Location</button>
                 <button onClick={startCreatingPolygon}>Create Polygon</button>
                 {isCreatingPolygon && (
@@ -292,8 +294,8 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
             {isPopupVisible && (
                 <div style={{
                     position: 'fixed',
-                    top: '10px',
-                    left: '10px',
+                    bottom: '10px',
+                    right: '10px',
                     backgroundColor: 'white',
                     padding: '20px',
                     zIndex: 2000,
@@ -320,7 +322,5 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
         </>
     );
 
-
-};
 
 export default Map;
