@@ -78,7 +78,7 @@ const IndexPage: React.FC = () => {
                     progressData={progressData}
                 />
             </div>
-            <div style={{ width: '15%', padding: '20px' }}>
+            <div style={{ width: '15%', padding: '10px' }}>
                 <h2>Progress Data</h2>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     {Object.entries(progressData).map(([region, progress]) => (
