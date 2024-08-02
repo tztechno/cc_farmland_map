@@ -78,7 +78,7 @@ const IndexPage: React.FC = () => {
                     progressData={progressData}
                 />
             </div>
-            <div style={{ width: '14%', padding: '4px' }}>
+            <div style={{ width: '14%', padding: '8px' }}>
                 <h2>Status</h2>
 
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
@@ -86,7 +86,7 @@ const IndexPage: React.FC = () => {
 
                 <div style={{ marginTop: '20px' }}>
                     <select onChange={handleRegionSelect} value={selectedRegion}>
-                        <option value="">Select a region</option>
+                        <option value="">Select region</option>
                         {Object.keys(progressData).map(region => (
                             <option key={region} value={region}>{region}</option>
                         ))}
