@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON, useMap, CircleMarker, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { FeatureCollection, Feature } from 'geojson';
@@ -39,7 +39,7 @@ const getColorByProgress = (progress: number) => {
         case 0:
             return 'red';
         case 1:
-            return 'yellow';
+            return 'orange';
         case 2:
             return 'blue';
         case 3:
@@ -61,6 +61,7 @@ const parseWKT = (wkt: string): GeoJSON.Geometry | null => {
 
 const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
     const [geoJSONData, setGeoJSONData] = useState<FeatureCollection | null>(null);
+    const [markers, setMarkers] = useState<React.ReactNode[]>([]);
 
     useEffect(() => {
         fetch('/Polygon.csv')
@@ -105,6 +106,26 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
             });
     }, []);
 
+    const addCenterMarker = (feature: Feature, latlngs: L.LatLng[]) => {
+        if (latlngs.length === 0) return null;
+
+        const bounds = L.latLngBounds(latlngs);
+        const center = bounds.getCenter();
+        const regionId = feature.properties?.region as string;
+
+        return (
+            <CircleMarker
+                center={center}
+                radius={0}
+                key={`marker-${regionId}`}
+            >
+                <Tooltip permanent direction="center" className="region-label">
+                    {regionId}
+                </Tooltip>
+            </CircleMarker>
+        );
+    };
+
     const onEachFeature = useCallback((feature: Feature, layer: L.Layer) => {
         const regionId = feature.properties?.region as string;
 
@@ -120,7 +141,6 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
             }
         };
 
-        // 初期状態を灰色（progress 3）に設定
         updateStyle(progressData[regionId] !== undefined ? progressData[regionId] : 3);
 
         if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
@@ -133,12 +153,18 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                     onProgressUpdate(newProgressData);
                 },
             });
+
+            // 中心マーカーを追加
+            const latlngs = layer.getLatLngs().flat();
+            const centerMarker = addCenterMarker(feature, latlngs as L.LatLng[]);
+            if (centerMarker) {
+                setMarkers(prevMarkers => [...prevMarkers, centerMarker]);
+            }
         } else {
             console.warn('Unexpected layer type:', layer);
         }
     }, [progressData, onProgressUpdate]);
 
-    // progressDataが変更されたときにGeoJSONを更新
     useEffect(() => {
         if (geoJSONData) {
             setGeoJSONData({
@@ -154,11 +180,10 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
         }
     }, [progressData]);
 
-
     const memoizedGeoJSON = useMemo(() => (
         geoJSONData && (
             <GeoJSON
-                key={JSON.stringify(progressData)} // キーを追加して強制的に再レンダリング
+                key={JSON.stringify(progressData)}
                 data={geoJSONData}
                 onEachFeature={onEachFeature}
             />
@@ -173,6 +198,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
         >
             <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
             {memoizedGeoJSON}
+            {markers}
             {geoJSONData && <MapContent geoJSONData={geoJSONData} />}
         </MapContainer>
     );
