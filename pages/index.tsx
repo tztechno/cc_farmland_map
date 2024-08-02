@@ -79,7 +79,7 @@ const IndexPage: React.FC = () => {
                 />
             </div>
             <div style={{ width: '15%', padding: '10px' }}>
-                <h2>Progress Data</h2>
+                <h2>Status</h2>
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     {Object.entries(progressData).map(([region, progress]) => (
                         <li key={region} style={{ marginBottom: '5px' }}>
