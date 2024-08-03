@@ -12,7 +12,7 @@ cd farmland
 git pull
 
 
-cd polygon
+cd farmland
 git init
 git remote add origin https://github.com/tztechno/coco_farmland_map.git
 git push -u origin main
