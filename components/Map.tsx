@@ -289,7 +289,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                                 center={point}
                                 radius={5}  // この値を変更して点の大きさを調整
                                 color="ADD8E6"  // 水色
-                                fillColor="ADD8E6"  // 塗りつぶしの色も合わせる
+                                fillColor="blue"  // 塗りつぶしの色も合わせる
                                 weight={1}
                                 opacity={1}
                                 fillOpacity={0.6}
