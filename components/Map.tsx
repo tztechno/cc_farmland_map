@@ -287,8 +287,8 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
                             <CircleMarker
                                 key={index}
                                 center={point}
-                                radius={20}  // この値を変更して点の大きさを調整
-                                fillColor="red"
+                                radius={10}  // この値を変更して点の大きさを調整
+                                fillColor="blue"
                                 color="black"
                                 weight={1}
                                 opacity={1}
