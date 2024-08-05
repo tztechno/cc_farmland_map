@@ -18,6 +18,7 @@ git remote add origin https://github.com/tztechno/cc_farmland_map.git
 git pull
 git push -u origin main
 
+git pull
 git add .
 git commit -m “2024-08-05”
 git push -u origin main
