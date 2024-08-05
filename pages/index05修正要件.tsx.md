@@ -102,43 +102,6 @@ const IndexPage: React.FC = () => {
         }
     };
 
-    const handleUploadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbwL3jKpmAxGUYqUoz8gQP0Zh-NBZQFgBxIKH7kOmYUPBXf3yVrpEr6LQ_TfUw_0qBvZAw/exec', '_blank');
-    };
-
-    const handleDownloadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbya8YAc00btWBEvhvFpdoNlm_L6IkjmWKhJbQ68EIeDcYEy_vtKVKJWvCGAQiSY0-3NRQ/exec', '_blank');
-    };
-
-    const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const file = event.target.files?.[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const content = e.target?.result as string;
-                fetch('https://script.google.com/macros/s/AKfycbzTRUmakmdncy3WYFCFNX-y7biQNBs2nPfMNqAYfUI8RDxT7G-UUBBVM_E6tMRw1cF33Q/exec', {
-                    method: 'POST',
-                    body: JSON.stringify({ content: content, fileName: file.name }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    mode: 'no-cors'
-                })
-                    .then(() => {
-                        console.log('File uploaded successfully');
-                        alert('File uploaded successfully');
-                    })
-                    .catch(error => {
-                        console.error('Error uploading file:', error);
-                        alert('Error uploading file');
-                    });
-            };
-            reader.readAsText(file);
-        }
-    };
-
-
-
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ width: '86%' }}>
@@ -154,29 +117,76 @@ const IndexPage: React.FC = () => {
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
                 <button onClick={handleSaveCSV}>Save Progress</button>
 
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a></li>
-                        <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a></li>
 
-                    </ul>
-                </div>
 
-                <hr></hr>	
+{/*
 
-                <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
 
-                <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
+//４種類のリンクボタン並びに
+// 共有フォルダへのファイル送信システムを置きたい
 
-                <hr></hr>	
 
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Upload to GoogleDrive</h4>
-                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                </div>
+共有ホルダ内の作業進捗入力ファイル	https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link
 
-                <hr></hr>	
+共有ホルダ	https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX
+
+Download GAS	https://script.google.com/macros/s/AKfycbya8YAc00btWBEvhvFpdoNlm_L6IkjmWKhJbQ68EIeDcYEy_vtKVKJWvCGAQiSY0-3NRQ/exec
+
+Upload GAS	https://script.google.com/macros/s/AKfycbwL3jKpmAxGUYqUoz8gQP0Zh-NBZQFgBxIKH7kOmYUPBXf3yVrpEr6LQ_TfUw_0qBvZAw/exec
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Upload to Google Drive</title>
+</head>
+
+<body>
+    <h1>CSV Upload to Google Drive</h1>
+    <input type="file" id="fileInput" />
+    <button id="uploadButton">Upload File to Google Drive</button>
+
+    <script>
+        document.getElementById('uploadButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file first.');
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                const fileContent = event.target.result;
+                const fileName = file.name;
+
+                fetch('https://script.google.com/macros/s/AKfycbzTRUmakmdncy3WYFCFNX-y7biQNBs2nPfMNqAYfUI8RDxT7G-UUBBVM_E6tMRw1cF33Q/exec', {
+                    method: 'POST',
+                    body: JSON.stringify({ content: fileContent, fileName }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    mode: 'no-cors' // このオプションはレスポンスを取得できません
+                })
+                    .then(() => {
+                        console.log('File uploaded successfully');
+                    })
+                    .catch(error => console.error('Error uploading file:', error));
+            };
+
+            reader.readAsText(file);
+        });
+    </script>
+</body>
+
+*/}
+
 
                 <ProgressSelector
                     progressData={progressData}

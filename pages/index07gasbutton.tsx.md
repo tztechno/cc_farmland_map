@@ -154,29 +154,24 @@ const IndexPage: React.FC = () => {
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
                 <button onClick={handleSaveCSV}>Save Progress</button>
 
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Quick Links</h4>
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a></li>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progres</a></li>
+                        <p></p>
                         <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a></li>
 
                     </ul>
                 </div>
-
-                <hr></hr>	
-
+                		
                 <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
 
                 <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
 
-                <hr></hr>	
-
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Upload to GoogleDrive</h4>
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Upload to GoogleDrive</h3>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
-
-                <hr></hr>	
 
                 <ProgressSelector
                     progressData={progressData}

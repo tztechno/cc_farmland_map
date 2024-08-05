@@ -11,7 +11,7 @@ https://github.com/tztechno/cc_farmland_map.git
 cd farmland
 git pull
 
-
+cd coco/farmland
 cd farmland
 git init
 git remote add origin https://github.com/tztechno/cc_farmland_map.git

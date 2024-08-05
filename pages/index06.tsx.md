@@ -102,14 +102,6 @@ const IndexPage: React.FC = () => {
         }
     };
 
-    const handleUploadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbwL3jKpmAxGUYqUoz8gQP0Zh-NBZQFgBxIKH7kOmYUPBXf3yVrpEr6LQ_TfUw_0qBvZAw/exec', '_blank');
-    };
-
-    const handleDownloadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbya8YAc00btWBEvhvFpdoNlm_L6IkjmWKhJbQ68EIeDcYEy_vtKVKJWvCGAQiSY0-3NRQ/exec', '_blank');
-    };
-
     const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
@@ -137,8 +129,6 @@ const IndexPage: React.FC = () => {
         }
     };
 
-
-
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ width: '86%' }}>
@@ -154,29 +144,20 @@ const IndexPage: React.FC = () => {
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
                 <button onClick={handleSaveCSV}>Save Progress</button>
 
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Quick Links</h4>
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a></li>
-                        <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a></li>
-
+                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">共有フォルダ内の作業進捗入力ファイル</a></li>
+                        <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">共有フォルダ</a></li>
+                        <li><a href="https://script.google.com/macros/s/AKfycbya8YAc00btWBEvhvFpdoNlm_L6IkjmWKhJbQ68EIeDcYEy_vtKVKJWvCGAQiSY0-3NRQ/exec" target="_blank" rel="noopener noreferrer">Download GAS</a></li>
+                        <li><a href="https://script.google.com/macros/s/AKfycbwL3jKpmAxGUYqUoz8gQP0Zh-NBZQFgBxIKH7kOmYUPBXf3yVrpEr6LQ_TfUw_0qBvZAw/exec" target="_blank" rel="noopener noreferrer">Upload GAS</a></li>
                     </ul>
                 </div>
 
-                <hr></hr>	
-
-                <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
-
-                <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
-
-                <hr></hr>	
-
-                <div style={{ marginTop: '8px' }}>
-                    <h4>Upload to GoogleDrive</h4>
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Upload CSV to Google Drive</h3>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
-
-                <hr></hr>	
 
                 <ProgressSelector
                     progressData={progressData}
