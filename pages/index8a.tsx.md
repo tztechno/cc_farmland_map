@@ -103,11 +103,11 @@ const IndexPage: React.FC = () => {
     };
 
     const handleUploadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbypp0TDW2BBUbAH1Z00Mfb4-uqDTOaRjmh8n4boy56syDZf68uEekKlz_dPY12nIraQQg/exec');
+        window.open('https://script.google.com/macros/s/AKfycbwL3jKpmAxGUYqUoz8gQP0Zh-NBZQFgBxIKH7kOmYUPBXf3yVrpEr6LQ_TfUw_0qBvZAw/exec', '_blank');
     };
 
     const handleDownloadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbyI8InumHZGfDeAo34TxwjrPYpJP61mft8lO7OLrLeO6kYsk1Kl59CQ3bfHQPC8QLV2Pw/exec');
+        window.open('https://script.google.com/macros/s/AKfycbya8YAc00btWBEvhvFpdoNlm_L6IkjmWKhJbQ68EIeDcYEy_vtKVKJWvCGAQiSY0-3NRQ/exec', '_blank');
     };
 
     const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
