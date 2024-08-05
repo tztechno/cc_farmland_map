@@ -149,54 +149,29 @@ const IndexPage: React.FC = () => {
                 />
             </div>
             <div style={{ width: '14%', padding: '8px' }}>
- 
+                <h2>Status</h2>
 
-                <hr></hr>	
+                <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
+                <button onClick={handleSaveCSV}>Save Progress</button>
 
-                <div style={{
-                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
-                    display: 'flex', flexDirection: 'column', gap: '10px',
-                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
-                }}>
-   
-                       <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a>
-   
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progres</a></li>
+                        <p></p>
+                        <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a></li>
+
+                    </ul>
                 </div>
-
-                <hr></hr>	
-
-                <div style={{
-                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
-                    display: 'flex', flexDirection: 'column', gap: '10px',
-                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
-                }}>
-
-                <InitialDataLoader onDataLoaded={handleInitialDataLoad} />            
 
                 <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
 
                 <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
-                
-                <button onClick={handleSaveCSV}>Save Progress</button>
 
+                <div style={{ marginTop: '20px' }}>
+                    <h3>Upload to GoogleDrive</h3>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
-                
-                <hr></hr>	
-
-                <div style={{
-                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
-                    display: 'flex', flexDirection: 'column', gap: '10px',
-                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
-                }}>
-
-                <p>Upload to GoogleDrive</p>
-                <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                <p></p>
-                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
-
-                </div>
-
-                <hr></hr>	
 
                 <ProgressSelector
                     progressData={progressData}
