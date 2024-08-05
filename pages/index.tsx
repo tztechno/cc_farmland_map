@@ -152,14 +152,15 @@ const IndexPage: React.FC = () => {
                 <h2>Status</h2>
 
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
-                <button onClick={handleSaveCSV}>Save Progress</button>
+
+
 
                 <div style={{ marginTop: '8px' }}>
-                    <h4>Quick Links</h4>
+                    <p>Quick Links</p>
                    
                        <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a>
-                       <p></p>
-                       
+                       <br></br>
+
                        <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a>
                     
                 </div>
@@ -173,7 +174,10 @@ const IndexPage: React.FC = () => {
                 <hr></hr>	
 
                 <div style={{ marginTop: '8px' }}>
-                    <h4>Upload to GoogleDrive</h4>
+
+                    <button onClick={handleSaveCSV}>Save Progress</button>
+
+                    <p>Upload to GoogleDrive</p>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
 
