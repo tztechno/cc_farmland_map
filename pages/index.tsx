@@ -151,37 +151,39 @@ const IndexPage: React.FC = () => {
             <div style={{ width: '14%', padding: '8px' }}>
                 <h2>Status</h2>
 
-                <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
+
 
                 <hr></hr>	
 
                 <div style={{ marginTop: '4px' }}>
    
                        <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a>
-                       <br></br>
-
-                       <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a>
-                    
+   
                 </div>
 
                 <hr></hr>	
 
                 <div style={{ marginTop: '4px' }}>
+
+                <InitialDataLoader onDataLoaded={handleInitialDataLoad} />            
 
                 <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
 
                 <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
                 
+                <button onClick={handleSaveCSV}>Save Progress</button>
+
                 </div>
                 
                 <hr></hr>	
 
                 <div style={{ marginTop: '4px' }}>
 
-                    <button onClick={handleSaveCSV}>Save Progress</button>
+                <p>Upload to GoogleDrive</p>
+                <input type="file" onChange={handleUploadCSV} accept=".csv" />
+                <br></br>
+                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
 
-                    <p>Upload to GoogleDrive</p>
-                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
 
                 <hr></hr>	
