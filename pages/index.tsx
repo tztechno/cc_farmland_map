@@ -153,11 +153,10 @@ const IndexPage: React.FC = () => {
 
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
 
+                <hr></hr>	
 
-
-                <div style={{ marginTop: '8px' }}>
-                    <p>Quick Links</p>
-                   
+                <div style={{ marginTop: '4px' }}>
+   
                        <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a>
                        <br></br>
 
@@ -167,13 +166,17 @@ const IndexPage: React.FC = () => {
 
                 <hr></hr>	
 
+                <div style={{ marginTop: '4px' }}>
+
                 <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
 
                 <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
-
+                
+                </div>
+                
                 <hr></hr>	
 
-                <div style={{ marginTop: '8px' }}>
+                <div style={{ marginTop: '4px' }}>
 
                     <button onClick={handleSaveCSV}>Save Progress</button>
 
