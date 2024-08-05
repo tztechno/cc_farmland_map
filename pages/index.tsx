@@ -149,13 +149,15 @@ const IndexPage: React.FC = () => {
                 />
             </div>
             <div style={{ width: '14%', padding: '8px' }}>
-                <h2>Status</h2>
-
-
+ 
 
                 <hr></hr>	
 
-                <div style={{ marginTop: '4px' }}>
+                <div style={{
+                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
+                    display: 'flex', flexDirection: 'column', gap: '10px',
+                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
+                }}>
    
                        <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress Report</a>
    
@@ -163,7 +165,11 @@ const IndexPage: React.FC = () => {
 
                 <hr></hr>	
 
-                <div style={{ marginTop: '4px' }}>
+                <div style={{
+                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
+                    display: 'flex', flexDirection: 'column', gap: '10px',
+                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
+                }}>
 
                 <InitialDataLoader onDataLoaded={handleInitialDataLoad} />            
 
@@ -177,7 +183,11 @@ const IndexPage: React.FC = () => {
                 
                 <hr></hr>	
 
-                <div style={{ marginTop: '4px' }}>
+                <div style={{
+                    position: 'fixed', bottom: '10px', left: '10px', zIndex: 1000,
+                    display: 'flex', flexDirection: 'column', gap: '10px',
+                    backgroundColor: 'white', padding: '10px', borderRadius: '5px'
+                }}>
 
                 <p>Upload to GoogleDrive</p>
                 <input type="file" onChange={handleUploadCSV} accept=".csv" />
