@@ -102,14 +102,6 @@ const IndexPage: React.FC = () => {
         }
     };
 
-    const handleUploadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbypp0TDW2BBUbAH1Z00Mfb4-uqDTOaRjmh8n4boy56syDZf68uEekKlz_dPY12nIraQQg/exec');
-    };
-
-    const handleDownloadButtonClick = () => {
-        window.open('https://script.google.com/macros/s/AKfycbyI8InumHZGfDeAo34TxwjrPYpJP61mft8lO7OLrLeO6kYsk1Kl59CQ3bfHQPC8QLV2Pw/exec');
-    };
-
     const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
         if (file) {
@@ -137,8 +129,6 @@ const IndexPage: React.FC = () => {
         }
     };
 
-
-
     return (
         <div style={{ display: 'flex' }}>
             <div style={{ width: '86%' }}>
@@ -149,47 +139,54 @@ const IndexPage: React.FC = () => {
                 />
             </div>
             <div style={{ width: '14%', padding: '8px' }}>
-                <h2>Status</h2>
-
-                <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
-                <button onClick={handleSaveCSV}>Save Progress</button>
+                <hr></hr>
+                <div style={{ marginTop: '20px' }}>
+                    <InitialDataLoader onDataLoaded={handleInitialDataLoad} />
+                </div>   
 
                 <div style={{ marginTop: '20px' }}>
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progres</a></li>
-                        <p></p>
-                        <li><a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Folder</a></li>
+                    <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progress</a>
+                    <p></p>
+                </div>  
 
+                <hr></hr>
+
+                <div style={{ marginTop: '20px' }}>
+                    <ProgressSelector
+                        progressData={progressData}
+                        onProgressUpdate={handleProgressUpdate}
+                    />
+                    <ul style={{ listStyleType: 'none', padding: 0 }}>
+                        {Object.entries(progressData).map(([region, progress]) => (
+                            <li key={region} style={{ marginBottom: '5px' }}>
+                                <span style={{
+                                    color: colorMapping[progress as keyof typeof colorMapping],
+                                    fontWeight: 'bold'
+                                }}>
+                                    {region}: {progressMapping[progress as keyof typeof progressMapping]}
+                                </span>
+                            </li>
+                        ))}
                     </ul>
+                </div> 
+                
+                <div style={{ marginTop: '20px' }}>
+                    <button onClick={handleSaveCSV}>Save Progress</button>
+                <p></p>
                 </div>
 
-                <button onClick={handleUploadButtonClick} className="button">Upload Progress</button>
-
-                <button onClick={handleDownloadButtonClick} className="button">Download Progress</button>
+                <hr></hr>
 
                 <div style={{ marginTop: '20px' }}>
-                    <h3>Upload to GoogleDrive</h3>
+                    <p>Send File to GoogleDrive</p>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
 
-                <ProgressSelector
-                    progressData={progressData}
-                    onProgressUpdate={handleProgressUpdate}
-                />
+                <div style={{ marginTop: '20px' }}>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                </div>
+                <hr></hr>
 
-                <ul style={{ listStyleType: 'none', padding: 0 }}>
-                    {Object.entries(progressData).map(([region, progress]) => (
-                        <li key={region} style={{ marginBottom: '5px' }}>
-                            <span style={{
-                                color: colorMapping[progress as keyof typeof colorMapping],
-                                fontWeight: 'bold'
-                            }}>
-                                {region}: {progressMapping[progress as keyof typeof progressMapping]}
-                            </span>
-                        </li>
-                    ))}
-                </ul>
             </div>
         </div>
     );
