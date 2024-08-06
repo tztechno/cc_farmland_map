@@ -8,7 +8,7 @@ import * as Papa from 'papaparse';
 import { LayersControl } from 'react-leaflet';
 
 export interface ProgressData {
-    [key: string]: number;
+    [region: number]: number;
 }
 
 interface MapProps {

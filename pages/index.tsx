@@ -3,9 +3,12 @@ import dynamic from 'next/dynamic';
 import * as Papa from 'papaparse';
 import GitHubDataLoader from '../components/GitHubDataLoader';
 import GoogleSheetDataLoader from '../components/GoogleSheetDataLoader';
-import { ProgressData } from '../components/Map';
+interface ProgressData {
+    [region: number]: number;
+};
 
 const MapComponent = dynamic(() => import('../components/Map'), { ssr: false });
+//import { ProgressData } from '../components/Map';
 
 const progressMapping = {
     0: '未散布',
@@ -25,15 +28,15 @@ const ProgressSelector: React.FC<{
     progressData: ProgressData,
     onProgressUpdate: (newProgressData: ProgressData) => void
 }> = ({ progressData, onProgressUpdate }) => {
-    const [selectedRegion, setSelectedRegion] = useState<string>('');
+    const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
 
     const handleRegionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setSelectedRegion(event.target.value);
+        setSelectedRegion(parseInt(event.target.value, 10));
     };
 
     const handleProgressSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const newProgress = parseInt(event.target.value);
-        if (selectedRegion) {
+        const newProgress = parseInt(event.target.value, 10);
+        if (selectedRegion !== null) {
             const newProgressData = { ...progressData, [selectedRegion]: newProgress };
             onProgressUpdate(newProgressData);
         }
@@ -41,13 +44,13 @@ const ProgressSelector: React.FC<{
 
     return (
         <div style={{ marginTop: '20px' }}>
-            <select onChange={handleRegionSelect} value={selectedRegion}>
+            <select onChange={handleRegionSelect} value={selectedRegion || ""}>
                 <option value="">Select region</option>
                 {Object.keys(progressData).map(region => (
                     <option key={region} value={region}>{region}</option>
                 ))}
             </select>
-            {selectedRegion && (
+            {selectedRegion !== null && (
                 <select
                     onChange={handleProgressSelect}
                     value={progressData[selectedRegion]}
@@ -68,6 +71,7 @@ const ProgressSelector: React.FC<{
     );
 };
 
+
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
@@ -76,14 +80,25 @@ const IndexPage: React.FC = () => {
         setProgressData(newProgressData);
     }, []);
 
+
     const handleInitialDataLoad = useCallback((data: ProgressData) => {
-        setProgressData(prevData => ({ ...prevData, ...data }));
+        setProgressData(prevData => {
+            const newData: ProgressData = {};
+            for (const [region, progress] of Object.entries(data)) {
+                const regionNumber = parseInt(region, 10);
+                if (!isNaN(regionNumber) && !isNaN(progress)) {
+                    newData[regionNumber] = progress;
+                }
+            }
+            return { ...prevData, ...newData };
+        });
     }, []);
+
 
     const handleSaveCSV = () => {
         const csvContent = Papa.unparse(
             Object.entries(progressData).map(([region, progress]) => ({
-                region,
+                region: parseInt(region, 10),
                 progress,
             }))
         );
@@ -100,6 +115,8 @@ const IndexPage: React.FC = () => {
             link.click();
             document.body.removeChild(link);
         }
+
+
     };
 
     const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,26 +125,52 @@ const IndexPage: React.FC = () => {
             const reader = new FileReader();
             reader.onload = (e) => {
                 const content = e.target?.result as string;
-                fetch('https://script.google.com/macros/s/AKfycbzTRUmakmdncy3WYFCFNX-y7biQNBs2nPfMNqAYfUI8RDxT7G-UUBBVM_E6tMRw1cF33Q/exec', {
-                    method: 'POST',
-                    body: JSON.stringify({ content: content, fileName: file.name }),
-                    headers: {
-                        'Content-Type': 'application/json'
+
+                // ここで Papa.parse を使用してCSVを解析します
+                Papa.parse(content, {
+                    header: true, // CSVの1行目をヘッダーとして扱う
+                    skipEmptyLines: true,
+                    complete: (results) => {
+                        const newData: ProgressData = {};
+                        results.data.forEach((row: any) => {
+                            const region = parseInt(row.region, 10);
+                            const progress = parseInt(row.progress, 10);
+                            if (!isNaN(region) && !isNaN(progress)) {
+                                newData[region] = progress;
+                            }
+                        });
+
+                        // 解析したデータを状態にセットします
+                        setProgressData(newData);
+
+                        // Google Drive APIを使用してファイルをアップロードします
+                        fetch('https://script.google.com/macros/s/AKfycbzTRUmakmdncy3WYFCFNX-y7biQNBs2nPfMNqAYfUI8RDxT7G-UUBBVM_E6tMRw1cF33Q/exec', {
+                            method: 'POST',
+                            body: JSON.stringify({ content: content, fileName: file.name }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            mode: 'no-cors'
+                        })
+                            .then(() => {
+                                console.log('File uploaded successfully');
+                                alert('File uploaded successfully');
+                            })
+                            .catch(error => {
+                                console.error('Error uploading file:', error);
+                                alert('Error uploading file');
+                            });
                     },
-                    mode: 'no-cors'
-                })
-                    .then(() => {
-                        console.log('File uploaded successfully');
-                        alert('File uploaded successfully');
-                    })
-                    .catch(error => {
-                        console.error('Error uploading file:', error);
-                        alert('Error uploading file');
-                    });
+                    error: (error) => {
+                        console.error('Error parsing CSV:', error);
+                        alert('Error parsing CSV file');
+                    }
+                });
             };
             reader.readAsText(file);
         }
     };
+
 
     return (
         <div style={{ display: 'flex' }}>
