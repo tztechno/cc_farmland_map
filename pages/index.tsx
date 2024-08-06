@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import dynamic from 'next/dynamic';
 import { ProgressData } from '../components/Map';
 import InitialDataLoader from '../components/InitialDataLoader';
@@ -69,16 +69,6 @@ const ProgressSelector: React.FC<{
 
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
-
-    useEffect(() => {
-        const initialData: ProgressData = {};
-        // デフォルトのすべての地域の進捗状況を3に設定
-        const regions = ['Region1', 'Region2', 'Region3', 'Region4']; // ここにデフォルトの地域をリストアップ
-        regions.forEach(region => {
-            initialData[region] = 3;
-        });
-        setProgressData(initialData);
-    }, []);
 
     const handleProgressUpdate = useCallback((newProgressData: ProgressData) => {
         setProgressData(newProgressData);
@@ -168,7 +158,8 @@ const IndexPage: React.FC = () => {
                         {Object.entries(progressData).map(([region, progress]) => (
                             <li key={region} style={{ marginBottom: '5px' }}>
                                 <span style={{
-                                    color: colorMapping[progress as keyof typeof colorMapping]
+                                    color: colorMapping[progress as keyof typeof colorMapping],
+                                    fontWeight: 'bold'
                                 }}>
                                     {region}: {progressMapping[progress as keyof typeof progressMapping]}
                                 </span>
@@ -177,12 +168,23 @@ const IndexPage: React.FC = () => {
                     </ul>
                 </div>
 
+                <div style={{ marginTop: '20px' }}>
+                    <button onClick={handleSaveCSV}>Save Progress</button>
+                    <p></p>
+                </div>
+
                 <hr></hr>
 
                 <div style={{ marginTop: '20px' }}>
-                    <input type="file" accept=".csv" onChange={handleUploadCSV} />
-                    <button onClick={handleSaveCSV}>Save Progress to CSV</button>
+                    <p>Send File to GoogleDrive</p>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
                 </div>
+
+                <div style={{ marginTop: '20px' }}>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                </div>
+                <hr></hr>
+
             </div>
         </div>
     );
