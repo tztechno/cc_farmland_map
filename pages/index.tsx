@@ -144,7 +144,7 @@ const IndexPage: React.FC = () => {
                         Load GitHub Data {dataSource === 'github' && '(Selected)'}
                     </button>
                     <button onClick={() => setDataSource('googleDrive')}>
-                        Load Google Drive Data {dataSource === 'googleDrive' && '(Selected)'}
+                        Load GoogleDrive Data {dataSource === 'googleDrive' && '(Selected)'}
                     </button>
                 </div>
 
