@@ -6,8 +6,8 @@ interface InitialDataLoaderProps {
     onDataLoaded: (data: ProgressData) => void;
 }
 
-const GOOGLE_SHEET_ID = '1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4';
-const SHEET_NAME = 'progress';
+const GOOGLE_SHEET_ID = 'YOUR_SPREADSHEET_ID';
+const SHEET_NAME = 'Sheet1';
 
 const InitialDataLoader: React.FC<InitialDataLoaderProps> = ({ onDataLoaded }) => {
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
