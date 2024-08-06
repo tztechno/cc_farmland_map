@@ -71,10 +71,10 @@ const InitialDataLoader: React.FC<InitialDataLoaderProps> = ({ onDataLoaded }) =
     return (
         <div>
             <button onClick={() => { setDataSource('github'); loadData(); }}>
-                Show Progress GitHub {dataSource === 'github' && '(Currently Selected)'}
+                Progress GitHub {dataSource === 'github' && '(Selected)'}
             </button>
             <button onClick={() => { setDataSource('googleDrive'); loadData(); }}>
-                Show Progress GoogleDrive {dataSource === 'googleDrive' && '(Currently Selected)'}
+                Progress GoogleDrive {dataSource === 'googleDrive' && '(Selected)'}
             </button>
         </div>
     );
