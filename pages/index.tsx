@@ -178,7 +178,7 @@ const IndexPage: React.FC = () => {
 
             <div style={{ width: '98%', height: '100%', padding: '8px', overflowY: 'auto' }}> 
 
-                <h3>Farmland Map</h3>
+                <p>Farmland Map v.2.1</p>
 
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                     <MapComponent
@@ -191,37 +191,29 @@ const IndexPage: React.FC = () => {
 
                 <div style={{ textAlign: 'center' }}>
                     <button onClick={() => setDataSource('github')}>
-                        GitHub Prog. {dataSource === 'github' && '<<<<'}
-                    </button><br />
+                        GitHub Prog. {dataSource === 'github' && '<<<<<<<<'}
+                    </button> &nbsp;
                     <button onClick={() => setDataSource('googleDrive')}>
-                        GoogleDrive Prog. {dataSource === 'googleDrive' && '<<<<'}
+                        GoogleDrive Prog. {dataSource === 'googleDrive' && '<<<<<<<<'}
                     </button>
                 </div>
 
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                    {dataSource === 'github' && <GitHubDataLoader onDataLoaded={handleInitialDataLoad} />}
-                    {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
-            </div>
-                
-                <hr/>
-                
-            <div style={{ textAlign: 'center', marginTop: '10px' }}>
-                    <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                    Input_Your_Progress
-                    </a>
+
+                {dataSource === 'github' && <GitHubDataLoader onDataLoaded={handleInitialDataLoad} />}
+
+                {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
+
+                <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
+                    Input-Your-Progress
+                </a>
+
              </div>
 
-                <hr />
-
-            <div style={{ textAlign: 'center' }}>
-                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
-
-                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send_File_to_GoogleDrive</a>
-                </div>
-
-                <hr />
+            <hr />
 
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                    <p>Progress Status</p>
                     <ProgressSelector
                         progressData={progressData}
                         onProgressUpdate={handleProgressUpdate}
@@ -238,13 +230,21 @@ const IndexPage: React.FC = () => {
                             </li>
                         ))}
                     </ul>
-                </div>
+            </div>
 
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
                     <button onClick={handleSaveCSV}>Save</button>
-                </div>
+            </div>
 
-                <hr />
+            <hr />
+
+            <div style={{ textAlign: 'center' }}>
+                <input type="file" onChange={handleUploadCSV} accept=".csv" />
+
+                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send-File-to-GoogleDrive</a>
+            </div>
+
+            <hr />
 
                 <h1> </h1>
                 <h1> </h1>
