@@ -175,19 +175,11 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '85%', height: '100%', display: 'flex', flexDirection: 'column' }}>
 
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
+            <div style={{ width: '85%', height: '85%', display: 'flex', flexDirection: 'column' }}>
 
-                    <h1>Farmland Map</h1>
+                <h1>Farmland Map</h1>
 
-                    <div style={{ textAlign: 'right' }}>
-                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
-
-                        <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
-                    </div>
-                    
-                </div>
                 <hr></hr>
                 
                 <div style={{ flex: 1, overflow: 'hidden' }}>
@@ -196,6 +188,14 @@ const IndexPage: React.FC = () => {
                         progressData={progressData}
                     />
                 </div>
+                <div style={{ textAlign: 'right' }}>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
+                </div>
+
+
+
             </div>
             <div style={{ width: '15%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
