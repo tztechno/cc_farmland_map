@@ -205,7 +205,7 @@ const IndexPage: React.FC = () => {
                 {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
 
                 <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                    Input-Your-Progress-In-GoogleDrive 
+                    Input-Progress-In-GoogleDrive 
                 </a>
 
              </div>
