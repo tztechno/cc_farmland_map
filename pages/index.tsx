@@ -177,12 +177,12 @@ const IndexPage: React.FC = () => {
         <div style={{ display: 'flex', height: '100vh' }}>
             <div style={{ width: '85%', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-                    <h1>Farmland Map</h1>
+                    <h2>Farmland Map</h2>
                     <div style={{ textAlign: 'right' }}>
                         <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                        <div style={{ marginTop: '10px' }}>
-                            <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
-                        </div>
+
+                        <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
+
                     </div>
                 </div>
                 <div style={{ flex: 1, overflow: 'hidden' }}>
