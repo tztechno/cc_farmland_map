@@ -175,13 +175,13 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '82%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ width: '85%', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
                     <h1>Farmland Map</h1>
                     <div style={{ textAlign: 'right' }}>
                         <input type="file" onChange={handleUploadCSV} accept=".csv" />
                         <div style={{ marginTop: '10px' }}>
-                            Send File to <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                            <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
                         </div>
                     </div>
                 </div>
@@ -192,13 +192,13 @@ const IndexPage: React.FC = () => {
                     />
                 </div>
             </div>
-            <div style={{ width: '18%', height: '100%', padding: '8px', overflowY: 'auto' }}>
+            <div style={{ width: '15%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
-                        Load GitHub Data {dataSource === 'github' && '(Selected)'}
+                        GitHub Prog. {dataSource === 'github' && '(Selected)'}
                     </button>
                     <button onClick={() => setDataSource('googleDrive')}>
-                        Load GoogleDrive Data {dataSource === 'googleDrive' && '(Selected)'}
+                        GoogleDrive Prog. {dataSource === 'googleDrive' && '(Selected)'}
                     </button>
                 </div>
 
@@ -208,7 +208,7 @@ const IndexPage: React.FC = () => {
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
-                    <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progress</a>
+                    <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress</a>
                 </div>
 
                 <hr />
@@ -233,7 +233,7 @@ const IndexPage: React.FC = () => {
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
-                    <button onClick={handleSaveCSV}>Save Progress</button>
+                    <button onClick={handleSaveCSV}>Save</button>
                 </div>
 
                 <hr />
