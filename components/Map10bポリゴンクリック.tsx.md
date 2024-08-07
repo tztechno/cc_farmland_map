@@ -110,35 +110,27 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
     }, []);
 
 
-    const addCenterMarker = useCallback((feature: Feature, latlngs: L.LatLng[]) => {
+
+    const addCenterMarker = (feature: Feature, latlngs: L.LatLng[]) => {
         if (latlngs.length === 0) return null;
 
         const bounds = L.latLngBounds(latlngs);
         const center = bounds.getCenter();
         const regionId = feature.properties?.region as string;
 
-        const handleClick = () => {
-            const currentProgress = progressData[regionId] !== undefined ? progressData[regionId] : 3;
-            const newProgress = (currentProgress + 1) % 4;
-            const newProgressData = { ...progressData, [regionId]: newProgress };
-            onProgressUpdate(newProgressData);
-        };
-
         return (
             <CircleMarker
                 center={center}
-                radius={10}
+                radius={0}
                 key={`marker-${regionId}`}
-                eventHandlers={{
-                    click: handleClick,
-                }}
             >
                 <Tooltip permanent direction="center" className="region-label">
                     {regionId}
                 </Tooltip>
             </CircleMarker>
         );
-    }, [progressData, onProgressUpdate]);
+    };
+
 
 
     const onEachFeature = useCallback((feature: Feature, layer: L.Layer) => {
@@ -159,7 +151,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
         updateStyle(progressData[regionId] !== undefined ? progressData[regionId] : 3);
 
         if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
-
+            
             {/*
             // クリックイベントハンドラを削除
             layer.on({

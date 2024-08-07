@@ -159,7 +159,7 @@ const Map: React.FC<MapProps> = ({ onProgressUpdate, progressData }) => {
         updateStyle(progressData[regionId] !== undefined ? progressData[regionId] : 3);
 
         if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
-
+            
             {/*
             // クリックイベントハンドラを削除
             layer.on({
