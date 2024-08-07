@@ -31,13 +31,13 @@ function parseCustomCsv(data) {
     var line = lines[i].trim();
     if (line) {
       var values = line.split(',');
-      
+
       // -2 番目を region, -1 番目を description として処理
-      var region = values[values.length - 2];
-      var description = values[values.length - 1];
+      var region = values[values.length - 2].replace(/"/g, ''); // 引用符を削除
+      var description = values[values.length - 1].replace(/"/g, ''); // 引用符を削除
       
-      // 残りを WKT として結合
-      var wkt = values.slice(0, values.length - 2).join(',');
+      // 残りを WKT として結合し、引用符を削除
+      var wkt = values.slice(0, values.length - 2).join(',').replace(/"/g, ''); // 引用符を削除
 
       // 結果にプッシュ
       result.push([wkt, region, description]);
