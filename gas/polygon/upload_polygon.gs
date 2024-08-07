@@ -2,8 +2,13 @@ function uploadPolygonToGitHub() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("polygon");
   var data = sheet.getRange(1, 1, sheet.getLastRow(), 3).getValues();
   
-  // CSV形式に変換
-  var csv = data.map(row => row.join(',')).join('\n');
+  // CSV形式に変換し、WKTを引用符で囲む
+  var csv = data.map(row => {
+    var wkt = '"' + row[0] + '"'; // WKTを引用符で囲む
+    var region = row[1];
+    var description = row[2];
+    return [wkt, region, description].join(',');
+  }).join('\n');
   
   // UTF-8エンコード
   var utf8Bytes = Utilities.newBlob(csv).getBytes();
@@ -55,7 +60,6 @@ function uploadPolygonToGitHub() {
     }
   }
 }
-
 
 
 
