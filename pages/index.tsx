@@ -207,7 +207,7 @@ const IndexPage: React.FC = () => {
                 
             <div style={{ textAlign: 'center', marginTop: '10px' }}>
                     <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                        Progress
+                    Input_Your_Progress
                     </a>
              </div>
 
@@ -216,7 +216,7 @@ const IndexPage: React.FC = () => {
             <div style={{ textAlign: 'center' }}>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
 
-                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">\nSend File to GoogleDrive</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send_File_to_GoogleDrive</a>
                 </div>
 
                 <hr />
