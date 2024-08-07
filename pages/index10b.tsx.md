@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from 'react';
+import { Resizable } from 're-resizable';
 import dynamic from 'next/dynamic';
 import * as Papa from 'papaparse';
 import GitHubDataLoader from '../components/GitHubDataLoader';
@@ -75,8 +76,8 @@ const ProgressSelector: React.FC<{
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
-    //const [mapHeight, setMapHeight] = useState('85%');
-    //const minBottomHeight = 200;
+    const [mapHeight, setMapHeight] = useState('85%');
+    const minBottomHeight = 200;
 
     const handleProgressUpdate = useCallback((newProgressData: ProgressData) => {
         setProgressData(newProgressData);
@@ -173,26 +174,35 @@ const IndexPage: React.FC = () => {
         }
     };
 
+
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
+
+        <div style={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
+            <Resizable
+                defaultSize={{ width: '100%', height: '85%' }}
+                minHeight={`calc(100% - ${minBottomHeight}px)`}
+                maxHeight={`calc(100% - ${minBottomHeight}px)`}
+                enable={{ bottom: true }}
+                onResizeStop={(e, direction, ref, d) => {
+                    const newHeight = parseInt(mapHeight) + d.height;
+                    const maxHeight = window.innerHeight - minBottomHeight;
+                    setMapHeight(`${Math.min(newHeight, maxHeight)}px`);
+                }}
+            >
+                <div style={{ height: '100%', width: '100%' }}>
                     <h1>Farmland Map</h1>
-                    <div style={{ textAlign: 'right' }}>
-                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                        <div style={{ marginTop: '10px' }}>
-                            Send File to <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
-                        </div>
-                    </div>
-                </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
                     <MapComponent
                         onProgressUpdate={handleProgressUpdate}
                         progressData={progressData}
                     />
                 </div>
-            </div>
-            <div style={{ width: '10%', height: '100%', padding: '8px', overflowY: 'auto' }}>
+            </Resizable>
+            <div style={{
+                height: `calc(100% - ${mapHeight})`,
+                minHeight: `${minBottomHeight}px`,
+                overflowY: 'auto',
+                padding: '8px'
+            }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
                         Load GitHub Data {dataSource === 'github' && '(Selected)'}
@@ -207,11 +217,15 @@ const IndexPage: React.FC = () => {
                     {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
                 </div>
 
+
+
+
                 <div style={{ marginTop: '20px' }}>
                     <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progress</a>
+                    <p></p>
                 </div>
 
-                <hr />
+                <hr></hr>
 
                 <div style={{ marginTop: '20px' }}>
                     <ProgressSelector
@@ -234,9 +248,20 @@ const IndexPage: React.FC = () => {
 
                 <div style={{ marginTop: '20px' }}>
                     <button onClick={handleSaveCSV}>Save Progress</button>
+                    <p></p>
                 </div>
 
-                <hr />
+                <hr></hr>
+
+                <div style={{ marginTop: '20px' }}>
+                    <p>Send File to GoogleDrive</p>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+                </div>
+
+                <div style={{ marginTop: '20px' }}>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                </div>
+                <hr></hr>
 
             </div>
         </div>

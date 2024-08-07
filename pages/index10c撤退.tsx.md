@@ -75,8 +75,8 @@ const ProgressSelector: React.FC<{
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
-    //const [mapHeight, setMapHeight] = useState('85%');
-    //const minBottomHeight = 200;
+    const [mapHeight, setMapHeight] = useState('85%');
+    const minBottomHeight = 200;
 
     const handleProgressUpdate = useCallback((newProgressData: ProgressData) => {
         setProgressData(newProgressData);
@@ -175,24 +175,14 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-                    <h1>Farmland Map</h1>
-                    <div style={{ textAlign: 'right' }}>
-                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                        <div style={{ marginTop: '10px' }}>
-                            Send File to <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
-                        </div>
-                    </div>
-                </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                    <MapComponent
-                        onProgressUpdate={handleProgressUpdate}
-                        progressData={progressData}
-                    />
-                </div>
+            <div style={{ width: '82%', height: '100%', overflow: 'hidden' }}>
+                <h1>Farmland Map</h1>
+                <MapComponent
+                    onProgressUpdate={handleProgressUpdate}
+                    progressData={progressData}
+                />
             </div>
-            <div style={{ width: '10%', height: '100%', padding: '8px', overflowY: 'auto' }}>
+            <div style={{ width: '18%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
                         Load GitHub Data {dataSource === 'github' && '(Selected)'}
@@ -238,6 +228,14 @@ const IndexPage: React.FC = () => {
 
                 <hr />
 
+                <div style={{ marginTop: '20px' }}>
+                    <p>Send File to GoogleDrive</p>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+                </div>
+
+                <div style={{ marginTop: '20px' }}>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                </div>
             </div>
         </div>
     );

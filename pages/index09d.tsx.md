@@ -75,8 +75,6 @@ const ProgressSelector: React.FC<{
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
-    //const [mapHeight, setMapHeight] = useState('85%');
-    //const minBottomHeight = 200;
 
     const handleProgressUpdate = useCallback((newProgressData: ProgressData) => {
         setProgressData(newProgressData);
@@ -173,27 +171,18 @@ const IndexPage: React.FC = () => {
         }
     };
 
+
     return (
-        <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-                    <h1>Farmland Map</h1>
-                    <div style={{ textAlign: 'right' }}>
-                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                        <div style={{ marginTop: '10px' }}>
-                            Send File to <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
-                        </div>
-                    </div>
-                </div>
-                <div style={{ flex: 1, overflow: 'hidden' }}>
-                    <MapComponent
-                        onProgressUpdate={handleProgressUpdate}
-                        progressData={progressData}
-                    />
-                </div>
+        <div style={{ display: 'flex' }}>
+            <div style={{ width: '82%' }}>
+                <h1>Farmland Map</h1>
+                <MapComponent
+                    onProgressUpdate={handleProgressUpdate}
+                    progressData={progressData}
+                />
             </div>
-            <div style={{ width: '10%', height: '100%', padding: '8px', overflowY: 'auto' }}>
-                <div>
+            <div style={{ width: '18%', padding: '8px' }}>
+                <div style={{ position: 'fixed', top: '8px', right: '8px' }}>
                     <button onClick={() => setDataSource('github')}>
                         Load GitHub Data {dataSource === 'github' && '(Selected)'}
                     </button>
@@ -202,16 +191,17 @@ const IndexPage: React.FC = () => {
                     </button>
                 </div>
 
-                <div style={{ marginTop: '20px' }}>
+                <div style={{ marginTop: '40px' }}>
                     {dataSource === 'github' && <GitHubDataLoader onDataLoaded={handleInitialDataLoad} />}
                     {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
                     <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Report Progress</a>
+                    <p></p>
                 </div>
 
-                <hr />
+                <hr></hr>
 
                 <div style={{ marginTop: '20px' }}>
                     <ProgressSelector
@@ -234,9 +224,20 @@ const IndexPage: React.FC = () => {
 
                 <div style={{ marginTop: '20px' }}>
                     <button onClick={handleSaveCSV}>Save Progress</button>
+                    <p></p>
                 </div>
 
-                <hr />
+                <hr></hr>
+
+                <div style={{ marginTop: '20px' }}>
+                    <p>Send File to GoogleDrive</p>
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+                </div>
+
+                <div style={{ marginTop: '20px' }}>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">GoogleDrive</a>
+                </div>
+                <hr></hr>
 
             </div>
         </div>
