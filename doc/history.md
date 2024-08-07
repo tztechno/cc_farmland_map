@@ -1,4 +1,9 @@
 ```
+2024-08-07 01:30
+仕様変更 v2.1
+コンテンツを地図の下に移動
+ポリンゴンの中心の数値はタッチで反応する
+polygonのcsvからのdownload/upload時の書式標準化
 
 2024-08-04 02:45
 仕様変更 v1.1
@@ -6,19 +11,12 @@ leafletの地図を航空写真をdefaultにして種類を選べるようにす
 preogressの更新で、ポリゴンタッチでの進捗変更入力は無効にする
 createPolygon時の点の大きさを調整
 
-2024-08-03 09:10
-manualを作成、コードは要らない、ボタン類の使い方の説明を詳しく
-現状のindex.tsxは-------------
-現状のmap.tsxは------------
-
 2024-08-03 02:00
 index.tsxのreturnで規定されている地図の右側15%の領域に、
 現在、map.tsxで規定されている２つのボタン
 <button onClick={showCurrentLocation}>Show Current Location</button>
 <button onClick={startCreatingPolygon}>Create Polygon</button>
 を直接設置したいが可能か。
-現状のindex.tsxは-------------
-現状のmap.tsxは------------
 
 2024-08-02 19:30
 popup修正を確認しました
