@@ -175,17 +175,18 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-
-            <div style={{ width: '88%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ width: '85%', height: '100%', display: 'flex', flexDirection: 'column' }}>
 
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-                    
-                    <h2>Farmland Map</h2>
-                    
-                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+                    <h1>Farmland Map</h1>
+                    <div style={{ textAlign: 'right' }}>
+                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
 
+                        <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
+                    </div>
                 </div>
-
+                <hr></hr>
+                
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                     <MapComponent
                         onProgressUpdate={handleProgressUpdate}
@@ -193,29 +194,23 @@ const IndexPage: React.FC = () => {
                     />
                 </div>
             </div>
-
-            <div style={{ width: '12%', height: '100%', padding: '8px', overflowY: 'auto' }}>
+            <div style={{ width: '15%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
-                        GitHub Prog. {dataSource === 'github' && '(NOW!)'}
-                    </button><br></br>
+                        GitHub Prog. {dataSource === 'github' && '<<<<'}
+                    </button>
                     <button onClick={() => setDataSource('googleDrive')}>
-                        GoogleDrive Prog. {dataSource === 'googleDrive' && '(NOW!)'}
+                        GoogleDrive Prog. {dataSource === 'googleDrive' && '<<<<'}
                     </button>
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
                     {dataSource === 'github' && <GitHubDataLoader onDataLoaded={handleInitialDataLoad} />}
-                    
                     {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
                 </div>
 
                 <div style={{ marginTop: '20px' }}>
                     <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">Progress</a>
-
-                    <br></br>
-
-                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">to GoogleDrive</a>
                 </div>
 
                 <hr />
