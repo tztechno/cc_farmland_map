@@ -177,12 +177,15 @@ const IndexPage: React.FC = () => {
         <div style={{ display: 'flex', height: '100vh' }}>
 
             <div style={{ width: '88%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
-                    <div><h2>Farmland Map</h2></div>
-                    <div style={{ textAlign: 'right' }}>
-                        <input type="file" onChange={handleUploadCSV} accept=".csv" />
-                    </div>
+                    
+                    <h2>Farmland Map</h2>
+                    
+                    <input type="file" onChange={handleUploadCSV} accept=".csv" />
+
                 </div>
+
                 <div style={{ flex: 1, overflow: 'hidden' }}>
                     <MapComponent
                         onProgressUpdate={handleProgressUpdate}
@@ -194,10 +197,10 @@ const IndexPage: React.FC = () => {
             <div style={{ width: '12%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
-                        GitHub Prog. {dataSource === 'github' && '(Selected)'}
+                        GitHub Prog. {dataSource === 'github' && '(NOW!)'}
                     </button><br></br>
                     <button onClick={() => setDataSource('googleDrive')}>
-                        GoogleDrive Prog. {dataSource === 'googleDrive' && '(Selected)'}
+                        GoogleDrive Prog. {dataSource === 'googleDrive' && '(NOW!)'}
                     </button>
                 </div>
 
