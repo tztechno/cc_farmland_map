@@ -191,10 +191,10 @@ const IndexPage: React.FC = () => {
 
                 <div style={{ textAlign: 'center' }}>
                     <button onClick={() => setDataSource('github')}>
-                        GitHub Prog. {dataSource === 'github' && '<<<<<<<<'}
+                        GitHub Progress {dataSource === 'github' && '<<<<<<<<'}
                     </button> &nbsp;
                     <button onClick={() => setDataSource('googleDrive')}>
-                        GoogleDrive Prog. {dataSource === 'googleDrive' && '<<<<<<<<'}
+                        GoogleDrive Progress {dataSource === 'googleDrive' && '<<<<<<<<'}
                     </button>
                 </div>
 
@@ -205,7 +205,7 @@ const IndexPage: React.FC = () => {
                 {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
 
                 <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                    Input-Your-Progress
+                    Input-Your-Progress-In-GoogleDrive 
                 </a>
 
              </div>
@@ -233,7 +233,7 @@ const IndexPage: React.FC = () => {
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                    <button onClick={handleSaveCSV}>Save</button>
+                    <button onClick={handleSaveCSV}>Local Save</button>
             </div>
 
             <hr />
@@ -241,7 +241,7 @@ const IndexPage: React.FC = () => {
             <div style={{ textAlign: 'center' }}>
                 <input type="file" onChange={handleUploadCSV} accept=".csv" />
 
-                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send-File-to-GoogleDrive</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send-to-GoogleDrive</a>
             </div>
 
             <hr />
