@@ -176,7 +176,7 @@ const IndexPage: React.FC = () => {
     return (
 
 
-            <div style={{ width: '100%', height: '100%', padding: '8px', overflowY: 'auto' }}> 
+            <div style={{ width: '98%', height: '100%', padding: '8px', overflowY: 'auto' }}> 
 
                 <h3>Farmland Map</h3>
 
@@ -216,9 +216,7 @@ const IndexPage: React.FC = () => {
                 <div style={{ textAlign: 'right' }}>
                     <input type="file" onChange={handleUploadCSV} accept=".csv" />
 
-                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">
-                        to GoogleDrive
-                    </a>
+                    <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer"> toGoogleDrive</a>
                 </div>
 
                 <hr />
