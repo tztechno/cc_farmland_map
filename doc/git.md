@@ -2,7 +2,6 @@
 cd farmland
 https://github.com/tztechno/cc_farmland_map.git
 
-
 package.jsonを修正
 npm install
 npm run dev

@@ -241,7 +241,7 @@ const IndexPage: React.FC = () => {
             <div style={{ textAlign: 'center' }}>
                 <input type="file" onChange={handleUploadCSV} accept=".csv" />
 
-                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">Send-to-GoogleDrive</a>
+                <a href="https://drive.google.com/drive/u/0/folders/1Uuwfk6ujh2XpjBYOCJ20B-86UbcKNlSX" target="_blank" rel="noopener noreferrer">To-GoogleDrive</a>
             </div>
 
             <hr />
