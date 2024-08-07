@@ -247,12 +247,11 @@ const IndexPage: React.FC = () => {
 
             <hr />
 
-                <h1> </h1>
-                <h1> </h1>
-                <h1> </h1>
-                <h1> </h1>
-                <h1> </h1>
-                <h1> </h1>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+            <p>&nbsp;</p>
+
             </div>
 
     );
