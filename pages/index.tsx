@@ -175,7 +175,7 @@ const IndexPage: React.FC = () => {
 
     return (
         <div style={{ display: 'flex', height: '100vh' }}>
-            <div style={{ width: '90%', height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <div style={{ width: '82%', height: '100%', display: 'flex', flexDirection: 'column' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
                     <h1>Farmland Map</h1>
                     <div style={{ textAlign: 'right' }}>
@@ -192,7 +192,7 @@ const IndexPage: React.FC = () => {
                     />
                 </div>
             </div>
-            <div style={{ width: '10%', height: '100%', padding: '8px', overflowY: 'auto' }}>
+            <div style={{ width: '18%', height: '100%', padding: '8px', overflowY: 'auto' }}>
                 <div>
                     <button onClick={() => setDataSource('github')}>
                         Load GitHub Data {dataSource === 'github' && '(Selected)'}
