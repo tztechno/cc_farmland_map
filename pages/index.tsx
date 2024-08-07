@@ -249,8 +249,6 @@ const IndexPage: React.FC = () => {
 
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-            <p>&nbsp;</p>
-            <p>&nbsp;</p>
 
             </div>
 
