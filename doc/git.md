@@ -20,6 +20,7 @@ git push -u origin main
 git pull
 
 cd farmland
+git pull
 git add .
 git commit -m “2024-08-08”
 git push -u origin main
@@ -37,6 +38,5 @@ http://localhost:3000
 http://localhost:3001
 
 npm install
-
 
 ```
