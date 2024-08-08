@@ -18,8 +18,10 @@ git pull
 git push -u origin main
 
 git pull
+
+cd farmland
 git add .
-git commit -m “2024-08-07”
+git commit -m “2024-08-08”
 git push -u origin main
 
 git push -f origin main
