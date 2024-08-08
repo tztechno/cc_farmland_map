@@ -3,12 +3,12 @@ import dynamic from 'next/dynamic';
 import * as Papa from 'papaparse';
 import GitHubDataLoader from '../components/GitHubDataLoader';
 import GoogleSheetDataLoader from '../components/GoogleSheetDataLoader';
+
 interface ProgressData {
     [region: number]: number;
 };
 
 const MapComponent = dynamic(() => import('../components/Map'), { ssr: false });
-//import { ProgressData } from '../components/Map';
 
 const progressMapping = {
     0: '未散布',
@@ -71,17 +71,34 @@ const ProgressSelector: React.FC<{
     );
 };
 
+const RegionSelector: React.FC<{
+    regions: number[],
+    onRegionSelect: (region: number) => void
+}> = ({ regions, onRegionSelect }) => {
+    const handleRegionSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        onRegionSelect(parseInt(event.target.value, 10));
+    };
+
+    return (
+        <div style={{ marginTop: '20px' }}>
+            <select onChange={handleRegionSelect} defaultValue="">
+                <option value="">Move to region</option>
+                {regions.map(region => (
+                    <option key={region} value={region}>{region}</option>
+                ))}
+            </select>
+        </div>
+    );
+};
 
 const IndexPage: React.FC = () => {
     const [progressData, setProgressData] = useState<ProgressData>({});
     const [dataSource, setDataSource] = useState<'github' | 'googleDrive' | null>(null);
-    //const [mapHeight, setMapHeight] = useState('85%');
-    //const minBottomHeight = 200;
+    const [selectedRegion, setSelectedRegion] = useState<number | null>(null);
 
     const handleProgressUpdate = useCallback((newProgressData: ProgressData) => {
         setProgressData(newProgressData);
     }, []);
-
 
     const handleInitialDataLoad = useCallback((data: ProgressData) => {
         setProgressData(prevData => {
@@ -96,6 +113,9 @@ const IndexPage: React.FC = () => {
         });
     }, []);
 
+    const handleRegionSelect = useCallback((region: number) => {
+        setSelectedRegion(region);
+    }, []);
 
     const handleSaveCSV = () => {
         const csvContent = Papa.unparse(
@@ -117,8 +137,6 @@ const IndexPage: React.FC = () => {
             link.click();
             document.body.removeChild(link);
         }
-
-
     };
 
     const handleUploadCSV = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -128,9 +146,8 @@ const IndexPage: React.FC = () => {
             reader.onload = (e) => {
                 const content = e.target?.result as string;
 
-                // ここで Papa.parse を使用してCSVを解析します
                 Papa.parse(content, {
-                    header: true, // CSVの1行目をヘッダーとして扱う
+                    header: true,
                     skipEmptyLines: true,
                     complete: (results) => {
                         const newData: ProgressData = {};
@@ -142,10 +159,8 @@ const IndexPage: React.FC = () => {
                             }
                         });
 
-                        // 解析したデータを状態にセットします
                         setProgressData(newData);
 
-                        // Google Drive APIを使用してファイルをアップロードします
                         fetch('https://script.google.com/macros/s/AKfycbzTRUmakmdncy3WYFCFNX-y7biQNBs2nPfMNqAYfUI8RDxT7G-UUBBVM_E6tMRw1cF33Q/exec', {
                             method: 'POST',
                             body: JSON.stringify({ content: content, fileName: file.name }),
@@ -174,16 +189,14 @@ const IndexPage: React.FC = () => {
     };
 
     return (
-
-
         <div style={{ width: '98%', height: '100%', padding: '8px', overflowY: 'auto' }}>
-
             <p>Farmland Map v.2.1</p>
 
             <div style={{ flex: 1, overflow: 'hidden' }}>
                 <MapComponent
                     onProgressUpdate={handleProgressUpdate}
                     progressData={progressData}
+                    selectedRegion={selectedRegion}
                 />
             </div>
 
@@ -199,15 +212,11 @@ const IndexPage: React.FC = () => {
             </div>
 
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
-
                 {dataSource === 'github' && <GitHubDataLoader onDataLoaded={handleInitialDataLoad} />}
-
                 {dataSource === 'googleDrive' && <GoogleSheetDataLoader onDataLoaded={handleInitialDataLoad} />}
-
                 <a href="https://docs.google.com/spreadsheets/d/1oXpWOmPWHfdvuv4uBc0rFcsXBa-9ECWiczDoDFZkUu4/edit?usp=drive_link" target="_blank" rel="noopener noreferrer">
                     Input-Progress-In-GoogleDrive
                 </a>
-
             </div>
 
             <hr />
@@ -217,6 +226,10 @@ const IndexPage: React.FC = () => {
                 <ProgressSelector
                     progressData={progressData}
                     onProgressUpdate={handleProgressUpdate}
+                />
+                <RegionSelector
+                    regions={Object.keys(progressData).map(Number)}
+                    onRegionSelect={handleRegionSelect}
                 />
                 <ul style={{ listStyleType: 'none', padding: 0 }}>
                     {Object.entries(progressData).map(([region, progress]) => (
@@ -250,9 +263,7 @@ const IndexPage: React.FC = () => {
             <p>&nbsp;</p>
             <p>&nbsp;</p>
             <p>&nbsp;</p>
-
         </div>
-
     );
 };
 
